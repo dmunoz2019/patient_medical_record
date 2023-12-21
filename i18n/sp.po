@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: patient_medical_record\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-20 12:00+0000\n"
+"PO-Revision-Date: 2023-12-20 12:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: patient_medical_record
+#: model:res.doctor,name:patient_medical_record.model_res_doctor
+msgid "Doctor"
+msgstr "Doctor"
+
+#. module: patient_medical_record
+#: field:res.doctor,name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: patient_medical_record
+#: field:res.doctor,patient_ids
+msgid "Patients"
+msgstr "Pacientes"
+
+#. module: patient_medical_record
+#: field:res.doctor,channel_ids
+msgid "Channels"
+msgstr "Canales"
+
+#. module: patient_medical_record
+#: field:res.doctor,meeting_ids
+msgid "Meetings"
+msgstr "Reuniones"
+
+#. module: patient_medical_record
+#: field:res.doctor,signup_token
+msgid "Signup Token"
+msgstr "Token de Registro"

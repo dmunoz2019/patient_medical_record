@@ -1,0 +1,65 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="patient_medical_record.health_consultation_list">
+      <field name="name">Consultas</field>
+      <field name="model">health.consultation</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="date"/>
+          <field name="patient_id"/>
+          <field name="doctor_id"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="patient_medical_record.health_consultation_action_window">
+      <field name="name">Consultas</field>
+      <field name="res_model">health.consultation</field>
+      <field name="view_mode">tree</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="patient_medical_record.health_consultation_action_server">
+      <field name="name">patient_medical_record.health_consultation server</field>
+      <field name="model_id" ref="model_health_consultation"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Clínica" 
+    id="patient_medical_record.menu_root"
+    web_icon="patient_medical_record,static/description/icon.png"
+    action="patient_medical_record.health_consultation_action_window"
+    />
+
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="patient_medical_record.menu_1" parent="patient_medical_record.menu_root"/>
+    <menuitem name="Menu 2" id="patient_medical_record.menu_2" parent="patient_medical_record.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="patient_medical_record.menu_1_list" parent="patient_medical_record.menu_1"
+              action="patient_medical_record.action_window"/>
+    <menuitem name="Server to list" id="patient_medical_record" parent="patient_medical_record.menu_2"
+              action="patient_medical_record.action_server"/>
+-->
+  </data>
+</odoo>

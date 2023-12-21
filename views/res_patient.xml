@@ -1,0 +1,109 @@
+<odoo>patient_medical_record.
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="patient_medical_record.patient_record_list">
+      <field name="name">Patient list</field>
+      <field name="model">res.patient</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="blood_type"/>
+          <field name="doctor_id"/>
+        </tree>
+      </field>
+    </record>
+
+      <!-- Form view for patient -->
+    <record id="view_res_patient_form" model="ir.ui.view">
+        <field name="name">Patient Form</field>
+        <field name="model">res.patient</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <!-- Action buttons, such as Save, Edit, Cancel can be added here -->
+            </header>
+        
+            <sheet >
+                <div class="oe_title">
+                    <h1><field name="name" placeholder="Por ejemplo, Diego Alejandro..."/></h1>
+                </div>
+        
+                <group>
+                    <group>
+                        <field name="blood_type"/>
+                        <field name="doctor_id"/>
+                    </group>
+                    <group>
+                   
+                    </group>
+                </group>
+        
+                <notebook>
+                    <page string="Consultations">
+                        <field name="consultations_ids">
+                            <!-- Custom tree view can be defined for consultations -->
+                        </field>
+                    </page>
+                    
+                     <page string="Appointments">
+                        <field name="meeting_ids">
+                            <!-- Custom tree view can be defined for consultations -->
+                        </field>
+                    </page>
+                    
+                    
+                    <!-- Additional pages for more categories of information can be added here -->
+                </notebook>
+        
+                <div class="oe_chatter">
+                    <!-- Chatter for logs and communication -->
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="patient_medical_record.patient_record_action_window">
+      <field name="name">Patient</field>
+      <field name="res_model">res.patient</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="patient_medical_record.patient_record_action_server">
+      <field name="name">Patient server</field>
+      <field name="model_id" ref="model_res_patient"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+
+    <menuitem name="Patient" 
+        id="patient_medical_record.patient_record_menu" 
+        parent="patient_medical_record.menu_root"
+        action="patient_medical_record.patient_record_action_window"
+        />
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="patient_medical_record.patient_record_menu_1_list" parent="patient_medical_record.patient_record_menu_1"
+              action="patient_medical_record.patient_record_action_window"/>
+    <menuitem name="Server to list" id="patient_record" parent="patient_medical_record.patient_record_menu_2"
+              action="patient_medical_record.patient_record_action_server"/>
+-->
+  </data>
+</odoo>
