@@ -7,7 +7,7 @@
       <field name="model">res.doctor</field>
       <field name="arch" type="xml">
         <tree>
-          <field name="name"/>
+          <field name="doctor_name"/>
         </tree>
       </field>
     </record>
@@ -25,6 +25,7 @@
             <sheet >
                 <div class="oe_title">
                     <h1><field name="name" placeholder="Por ejemplo, Diego Alejandro..."/></h1>
+                    <field name="doctor_name" invisible = "1" />
                 </div>
         
                 <group>
@@ -37,9 +38,20 @@
                 </group>
         
               <notebook>
-                  <page string="Pacientes">
-                      <field name="patient_ids"/>
-                  </page>
+                <!-- lets creat a list to select patients related to this doctor  -->
+                <page string="Patients">
+                  <field name="patient_ids">
+                    <!-- Custom tree view can be defined for consultations -->
+                    <tree string="Patient List">
+                      <field name="name" string="Name"/>
+                      <field name="patient_number" string="Patient Number"/>
+                      <field name="phone" string="Phone"/>
+                      <field name="email" string="Email"/>
+                  </tree>
+
+                  </field>
+
+                </page>
                   <!-- Puedes agregar más páginas para otras categorías de información -->
               </notebook>
         

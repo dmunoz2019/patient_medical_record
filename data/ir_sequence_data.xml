@@ -1,10 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
+        <!-- Sequence for Health Consultations -->
         <record id="seq_health_consultation" model="ir.sequence">
-            <field name="name">Health Consultation</field>
-            <field name="code">health.consultation</field>
-            <field name="prefix">HC</field>
+            <field name="name">Health Consultation Sequence</field>
+            <field name="code">health.consultation.sequence</field>
+            <field name="prefix">HC-</field>
+            <field name="suffix">/%(year)s-%(month)s-%(day)s</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>    
+
+    <!-- Sequence for Patients -->
+    <data noupdate="1">
+        <record id="seq_patient" model="ir.sequence">
+            <field name="name">Patient Sequence</field>
+            <field name="code">patient.sequence</field>
+            <field name="prefix">P-</field>
+            <field name="padding">5</field>
+            <field name="number_increment">1</field>
+        </record>
+    </data>
+
+    <!-- Sequence for Doctors -->
+    <data noupdate="1">
+        <record id="seq_doctor" model="ir.sequence">
+            <field name="name">Doctor Sequence</field>
+            <field name="code">doctor.sequence</field>
+            <field name="prefix">D-</field>
             <field name="padding">5</field>
             <field name="number_increment">1</field>
         </record>

@@ -4,9 +4,16 @@ from odoo import models, fields
 class HealthConsultation(models.Model):
     _name = 'health.consultation'
     _description = 'Health Consultation'
+    _rec_name = 'name'
+
+    _sql_constraints = [
+        ('name_unique',
+         'UNIQUE(name)',
+         "Name must be unique"),
+    ]
 
     def sequence_number(self):
-        return self.env['ir.sequence'].next_by_code('health.consultation')  
+        return self.env['ir.sequence'].next_by_code('health.consultation')
 
     name = fields.Char(string='Name', default=sequence_number)
     date = fields.Date(string='Consultation Date')

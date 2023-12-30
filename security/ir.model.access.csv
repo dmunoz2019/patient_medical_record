@@ -1,1 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+patient_medical_record.access_health_consultation,access_health_consultation,patient_medical_record.model_health_consultation,base.group_user,1,1,1,1
+patient_medical_record.access_res_patient,access_res_patient,patient_medical_record.model_res_patient,base.group_user,1,1,1,1
+patient_medical_record.access_res_doctor,access_res_doctor,patient_medical_record.model_res_doctor,base.group_user,1,1,1,1

@@ -7,6 +7,8 @@
       <field name="model">res.patient</field>
       <field name="arch" type="xml">
         <tree>
+          <field name="patient_id" />
+          <field name="patient_name" />
           <field name="blood_type"/>
           <field name="doctor_id"/>
         </tree>
@@ -26,12 +28,14 @@
             <sheet >
                 <div class="oe_title">
                     <h1><field name="name" placeholder="Por ejemplo, Diego Alejandro..."/></h1>
-                </div>
+                    <field name="patient_name" invisible = "1" />
+                  </div>
         
                 <group>
                     <group>
-                        <field name="blood_type"/>
+                        
                         <field name="doctor_id"/>
+                        <field name="blood_type"/>
                     </group>
                     <group>
                    
