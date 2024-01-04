@@ -1,25 +1,33 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 class ResPatient(models.Model):
     _name = 'res.patient'
     _description = 'Patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {'res.partner': 'partner_id'}
+    _rec_name = 'name'
 
-    # sequence for patient
-    _sql_constraints = [
-        ('patient_id_unique',
-         'UNIQUE(patient_id)',
-         "Patient ID must be unique"),
-    ]
+    @api.model
+    def create(self, vals):
+        if vals.get('patient_id',  _('New')) ==  _('New'):
+            vals['patient_id'] = self.env['ir.sequence'].next_by_code(
+                'res.patient.sequence') or  _('New')
+        result = super(ResPatient, self).create(vals)
+        return result
 
-    
-    def _compute_patient_number(self):
-        return self.env['ir.sequence'].next_by_code('res.patient')
-        
-    patient_id = fields.Char(string='Patient ID', required=True, copy=False, readonly=True, index=True, default=lambda self: self.env['ir.sequence'].next_by_code('res.patient'))
-    patient_name = fields.Char(string='Patient Name', required=True , related='partner_id.name', store=True, readonly=False) 
+    patient_id = fields.Char(string='Patient ID',
+                            required=True, 
+                            copy=False, 
+                            readonly=True, 
+                            index=True,  
+                            store=True
+                            )
+    patient_name = fields.Char(string='Patient Name', 
+                               required=True,
+                               related='partner_id.name',
+                               store=True,
+                               readonly=False) 
     blood_type = fields.Selection([
         ('a+', 'A+'), 
         ('a-', 'A-'),
@@ -49,5 +57,3 @@ class ResPatient(models.Model):
     def _get_mail_thread_data(self, request_list):
         res = super(ResPatient, self)._get_mail_thread_data(request_list)
         return res
-
-    

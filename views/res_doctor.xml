@@ -44,7 +44,7 @@
                     <!-- Custom tree view can be defined for consultations -->
                     <tree string="Patient List">
                       <field name="name" string="Name"/>
-                      <field name="patient_number" string="Patient Number"/>
+                      <field name="patient_id" string="Patient Number"/>
                       <field name="phone" string="Phone"/>
                       <field name="email" string="Email"/>
                   </tree>

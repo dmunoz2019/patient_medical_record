@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields , api, _
 
 class ResDoctor(models.Model):
     _name = 'res.doctor'
@@ -7,7 +7,7 @@ class ResDoctor(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _inherits = {'res.partner': 'partner_id'}
     _rec_name = 'name'
-
+    doctor_id = fields.Char(string='Doctor ID', required=True, copy=False, readonly=True, index=True, store=True)
 
     doctor_name = fields.Char(string='Doctor Name', required=True , related='partner_id.name', store=True, readonly=False)
     patient_ids = fields.One2many('res.patient', 'doctor_id', string='Patients')

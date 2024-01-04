@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields
+from odoo import models, fields, api, _
 
 class HealthConsultation(models.Model):
     _name = 'health.consultation'
@@ -11,11 +11,17 @@ class HealthConsultation(models.Model):
          'UNIQUE(name)',
          "Name must be unique"),
     ]
+    name = fields.Char(string='Patient', readonly=True ,copy=True )
+    
+    
+    @api.model
+    def create(self, vals):
+        if vals.get('name',  _('New')) ==  _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code(
+                'health.consultation.sequence') or  _('New')
+        result = super(HealthConsultation, self).create(vals)
+        return result
 
-    def sequence_number(self):
-        return self.env['ir.sequence'].next_by_code('health.consultation')
-
-    name = fields.Char(string='Name', default=sequence_number)
     date = fields.Date(string='Consultation Date')
     weight = fields.Float(string='Weight')
     fat_percentage = fields.Float(string='Fat Percentage')
