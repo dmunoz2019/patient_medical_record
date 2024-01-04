@@ -3,7 +3,7 @@
     <!-- explicit list view definition -->
 
     <record model="ir.ui.view" id="patient_medical_record.patient_record_list">
-      <field name="name">Patient list</field>
+      <field name="name">Lista de pacientes</field>
       <field name="model">res.patient</field>
       <field name="arch" type="xml">
         <tree>
@@ -28,15 +28,14 @@
             <sheet >
                 <div class="oe_title">
                     <h1><field name="patient_name" placeholder="Por ejemplo, Diego Alejandro..."/></h1>
-                    <field name="patient_id"  />
-                    <field name="name"/>
+                    <field name="patient_id"/>
+                    <field name="name" string="Nombre del paciente"/>
                   </div>
         
                 <group>
                     <group>
                         
-                        <field name="doctor_id"/>
-                        <field name="blood_type"/>
+                        <field name="doctor_id" />
                     </group>
                     <group>
                    
@@ -44,13 +43,13 @@
                 </group>
         
                 <notebook>
-                    <page string="Consultations">
+                    <page string="Consultas">
                         <field name="consultations_ids">
                             <!-- Custom tree view can be defined for consultations -->
                         </field>
                     </page>
                     
-                     <page string="Appointments">
+                     <page string="Citas">
                         <field name="meeting_ids">
                             <!-- Custom tree view can be defined for consultations -->
                         </field>
@@ -75,7 +74,7 @@
     <!-- actions opening views on models -->
 
     <record model="ir.actions.act_window" id="patient_medical_record.patient_record_action_window">
-      <field name="name">Patient</field>
+      <field name="name">Pacientes</field>
       <field name="res_model">res.patient</field>
       <field name="view_mode">tree,form</field>
     </record>
@@ -98,7 +97,7 @@
 
 
 
-    <menuitem name="Patient" 
+    <menuitem name="Pacientes" 
         id="patient_medical_record.patient_record_menu" 
         parent="patient_medical_record.menu_root"
         action="patient_medical_record.patient_record_action_window"
